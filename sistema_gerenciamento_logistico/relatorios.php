@@ -1,0 +1,12 @@
+<?php
+require 'config.php';$pdo=db();$pageTitle='Relatórios';$data=$_GET['data']??date('Y-m-d');
+$s=$pdo->prepare("SELECT f.id,f.data_frete,f.status,t.nome transportador,o.identificacao origem,d.identificacao destino,GROUP_CONCAT(p.nome SEPARATOR ', ') produtos FROM fretes f JOIN transportadores t ON t.id=f.transportador_id JOIN enderecos o ON o.id=f.origem_id JOIN enderecos d ON d.id=f.destino_id LEFT JOIN frete_produtos fp ON fp.frete_id=f.id LEFT JOIN produtos p ON p.id=fp.produto_id WHERE f.data_frete=? GROUP BY f.id ORDER BY f.id");$s->execute([$data]);$items=$s->fetchAll();
+if(isset($_GET['csv'])){header('Content-Type: text/csv; charset=utf-8');header('Content-Disposition: attachment; filename="relatorio-fretes-'.$data.'.csv"');echo "\xEF\xBB\xBF";$out=fopen('php://output','w');fputcsv($out,['Frete','Data','Transportador','Origem','Destino','Produtos','Status'],';');foreach($items as $r)fputcsv($out,[$r['id'],$r['data_frete'],$r['transportador'],$r['origem'],$r['destino'],$r['produtos'],$r['status']],';');fclose($out);exit;}
+require 'includes/header.php';
+?>
+<div class="page-heading"><div><h1 class="h3 fw-bold">Relatórios</h1><div class="text-secondary">Consulte e baixe os fretes de um dia específico</div></div></div>
+<div class="card p-3 mb-3"><form class="row g-2 align-items-end"><div class="col-md-4"><label class="form-label">Data dos fretes</label><input type="date" name="data" class="form-control" value="<?= htmlspecialchars($data) ?>"></div><div class="col-auto"><button class="btn btn-primary">Consultar</button></div><div class="col-auto"><a class="btn btn-outline-success" href="?data=<?= urlencode($data) ?>&csv=1">Baixar CSV</a></div></form></div>
+<div class="card p-3"><div class="d-flex justify-content-between"><h2 class="h5">Resultado</h2><span class="badge text-bg-primary"><?= count($items) ?> frete(s)</span></div><div class="table-responsive"><table class="table"><thead><tr><th>Nº</th><th>Transportador</th><th>Origem</th><th>Destino</th><th>Produtos</th><th>Status</th></tr></thead><tbody>
+<?php foreach($items as $r): ?><tr><td>#<?= $r['id'] ?></td><td><?= htmlspecialchars($r['transportador']) ?></td><td><?= htmlspecialchars($r['origem']) ?></td><td><?= htmlspecialchars($r['destino']) ?></td><td><?= htmlspecialchars($r['produtos']??'') ?></td><td><?= htmlspecialchars($r['status']) ?></td></tr><?php endforeach; ?>
+<?php if(!$items): ?><tr><td colspan="6" class="text-secondary">Nenhum frete encontrado para esta data.</td></tr><?php endif; ?></tbody></table></div></div>
+<?php require 'includes/footer.php'; ?>

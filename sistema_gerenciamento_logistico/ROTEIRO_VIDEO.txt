@@ -1,0 +1,43 @@
+ROTEIRO DE VÍDEO — LOGIGEST (5 a 8 minutos)
+
+ANTES DE GRAVAR
+- Inicie Apache e MySQL no XAMPP.
+- Abra o sistema no navegador e deixe alguns dados de teste preparados.
+- Grave a tela e apareça com câmera ligada no começo, conforme a orientação do professor.
+- Não mostre senhas ou dados pessoais reais de terceiros.
+
+1) APRESENTAÇÃO (30–45 segundos)
+“Olá, meu nome é Paulo Rodrigues da Silva, RA 09066018. Sou aluno do curso de Engenharia de Software, polo EAD, da UNIPAR EAD. Neste vídeo vou apresentar meu projeto prático da disciplina Fundamentos de Programação para Internet: o sistema LogiGest, um gerenciador logístico.”
+
+2) OBJETIVO E TECNOLOGIAS (40–60 segundos)
+“O objetivo do sistema é organizar produtos, endereços, transportadores e fretes. Foram utilizadas as tecnologias PHP no processamento, MySQL no banco de dados, HTML, CSS e JavaScript na interface, além do Bootstrap para o layout. O ambiente de execução local é o XAMPP.”
+
+3) DEMONSTRAÇÃO DOS CADASTROS (1–2 minutos)
+- Abra Produtos e cadastre um produto de teste.
+- Abra Endereços e cadastre um endereço de origem e outro de destino.
+- Abra Transportadores e cadastre um transportador fictício.
+Fala sugerida: “As telas permitem cadastrar e editar as informações que serão utilizadas na criação do frete.”
+
+4) GERAÇÃO DO FRETE (1–2 minutos)
+- Abra Fretes.
+- Selecione transportador, origem, destino e data.
+- Adicione pelo menos um produto (se possível, adicione mais de um para demonstrar a relação).
+- Gere o frete e mostre o registro na listagem.
+Fala sugerida: “O frete conecta os dados cadastrados. Um transportador pode estar associado a vários produtos no mesmo frete.”
+
+5) RELATÓRIO (30–60 segundos)
+- Abra Relatórios.
+- Selecione a data utilizada no frete.
+- Consulte e clique em Baixar CSV.
+Fala sugerida: “O relatório permite consultar os fretes de um dia e exportar os resultados para uma planilha.”
+
+6) CÓDIGO E ENCERRAMENTO (1–2 minutos)
+- Mostre rapidamente os arquivos index.php, produtos.php, fretes.php e database/schema.sql.
+- Explique que config.php concentra a conexão com o banco, includes guarda cabeçalho/rodapé, assets guarda CSS e JavaScript e schema.sql cria as tabelas e relacionamentos.
+Fala sugerida: “O projeto foi organizado em arquivos por funcionalidade. O banco possui uma tabela de fretes e uma tabela de associação entre fretes e produtos, permitindo incluir vários produtos em um frete. Obrigado!”
+
+IMPORTANTE
+- O vídeo deve ter entre 5 e 10 minutos.
+- Publique no YouTube como “Não listado”.
+- Envie o link do vídeo no ambiente virtual.
+- Grave você mesmo aparecendo no início; este roteiro é um apoio para sua apresentação.
